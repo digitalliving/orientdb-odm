@@ -20,6 +20,7 @@
 namespace Doctrine\OrientDB\Query;
 
 use Doctrine\OrientDB\Exception;
+use Doctrine\OrientDB\Query\Command\Create\Edge;
 use Doctrine\OrientDB\Query\Command\Delete;
 use Doctrine\OrientDB\Query\Command\Update\Add;
 use Doctrine\OrientDB\Query\Validator\ValidationException;
@@ -59,6 +60,7 @@ class Query implements QueryInterface
         'index.lookup'      => 'Doctrine\OrientDB\Query\Command\Index\Lookup',
         'index.rebuild'     => 'Doctrine\OrientDB\Query\Command\Index\Rebuild',
         'link'              => 'Doctrine\OrientDB\Query\Command\Create\Link',
+        'edge'              => 'Doctrine\OrientDB\Query\Command\Create\Edge',
     );
 
     /**
@@ -194,6 +196,21 @@ class Query implements QueryInterface
     public function drop($class, $property = null)
     {
         return $this->executeClassOrPropertyCommand('drop', $class, $property);
+    }
+
+    /**
+     * @param $class
+     * @param $from
+     * @param $to
+     *
+     * @return Edge
+     */
+    public function edge($class, $from, $to)
+    {
+        $commandClass = $this->getCommandClass('edge');
+        $this->command = new $commandClass($class, $from, $to);
+
+        return $this->command;
     }
 
     /**

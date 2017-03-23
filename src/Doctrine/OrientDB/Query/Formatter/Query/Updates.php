@@ -28,7 +28,8 @@ class Updates extends Query implements TokenInterface
         $string = "";
 
         foreach ($values as $key => $value) {
-            if ($key = self::stripNonSQLCharacters($key)) {
+            // Allow back-ticks for escaping reserved keywords.
+            if ($key = self::stripNonSQLCharacters($key, '`')) {
                 if ($value === null) {
                     $value = 'NULL';
                 } else if (is_int($value) || is_float($value)) {
