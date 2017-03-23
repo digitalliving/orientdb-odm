@@ -20,11 +20,12 @@
 namespace Doctrine\OrientDB\Query;
 
 use Doctrine\OrientDB\Exception;
+use Doctrine\OrientDB\Query\Command\Delete;
+use Doctrine\OrientDB\Query\Command\Update\Add;
 use Doctrine\OrientDB\Query\Validator\ValidationException;
 use Doctrine\OrientDB\Query\Command\Credential\Grant;
 use Doctrine\OrientDB\Query\Command\Credential\Revoke;
 use Doctrine\OrientDB\Query\Command\Insert;
-use Doctrine\OrientDB\Query\Command\Select;
 use Doctrine\OrientDB\Query\Validator\Rid as RidValidator;
 
 class Query implements QueryInterface
@@ -63,8 +64,8 @@ class Query implements QueryInterface
     /**
      * Builds a query with the given $command on the given $target.
      *
-     * @param array   $target
-     * @param string  $command
+     * @param array $target
+     * @param array $commands
      */
     public function __construct(array $target = array(), array $commands = array())
     {
@@ -126,8 +127,10 @@ class Query implements QueryInterface
     /**
      * Adds a where condition to the query.
      *
-     * @param string  $condition
-     * @param mixed   $value
+     * @param string $condition
+     * @param mixed  $value
+     *
+     * @return mixed
      */
     public function andWhere($condition, $value = null)
     {
@@ -138,9 +141,11 @@ class Query implements QueryInterface
      * Converts a "normal" select into an index one.
      * You use do a select on an index you can use the between operator.
      *
-     * @param   string  $key
-     * @param   string  $left
-     * @param   string  $right
+     * @param   string $key
+     * @param   string $left
+     * @param   string $right
+     *
+     * @return mixed
      */
     public function between($key, $left, $right)
     {
@@ -208,6 +213,8 @@ class Query implements QueryInterface
      *
      * @param array   $target
      * @param boolean $append
+     *
+     * @return mixed
      */
     public function from(array $target, $append = true)
     {
@@ -312,6 +319,8 @@ class Query implements QueryInterface
      * Count the elements of the index $indexName.
      *
      * @param string $indexName
+     *
+     * @return mixed
      */
     public function indexCount($indexName)
     {
@@ -327,6 +336,8 @@ class Query implements QueryInterface
      * @param string $indexName
      * @param string $key
      * @param string $rid
+     *
+     * @return mixed
      */
     public function indexPut($indexName, $key, $rid)
     {
@@ -342,6 +353,8 @@ class Query implements QueryInterface
      * @param string $indexName
      * @param string $key
      * @param string $rid
+     *
+     * @return mixed
      */
     public function indexRemove($indexName, $key, $rid = null)
     {
@@ -355,6 +368,8 @@ class Query implements QueryInterface
      * Rebuild the index $indexName
      *
      * @param string $indexName
+     *
+     * @return mixed
      */
     public function rebuild($indexName)
     {
@@ -453,6 +468,8 @@ class Query implements QueryInterface
      * @param array   $order
      * @param boolean $append
      * @param boolean $first
+     *
+     * @return mixed
      */
     public function orderBy($order, $append = true, $first = false)
     {
@@ -464,6 +481,8 @@ class Query implements QueryInterface
      *
      * @param string $condition
      * @param mixed  $value
+     *
+     * @return mixed
      */
     public function orWhere($condition, $value = null)
     {
@@ -517,6 +536,8 @@ class Query implements QueryInterface
      *
      * @param array   $projections
      * @param boolean $append
+     *
+     * @return mixed
      */
     public function select(array $projections, $append = true)
     {
@@ -602,7 +623,10 @@ class Query implements QueryInterface
      * Changes the internal command to an PUT, setting the class to update
      * and the values to be written.
      *
-     * @param  string $class
+     * @param array  $values
+     * @param string $class
+     * @param bool   $append
+     *
      * @return Command
      */
     public function put(array $values, $class, $append = true)
@@ -642,6 +666,8 @@ class Query implements QueryInterface
      *
      * @param string $condition
      * @param mixed  $value
+     *
+     * @return mixed
      */
     public function where($condition, $value = null)
     {
@@ -652,7 +678,9 @@ class Query implements QueryInterface
      * Returns on of the commands that belong to the query.
      *
      * @param  string $id
+     *
      * @return mixed
+     * @throws Exception
      */
     protected function getCommandClass($id)
     {
@@ -668,6 +696,8 @@ class Query implements QueryInterface
      *
      * @param string $action
      * @param string $class
+     *
+     * @return mixed
      */
     protected function manageClass($action, $class)
     {
@@ -683,6 +713,8 @@ class Query implements QueryInterface
      * @param string $action
      * @param string $class
      * @param string $property
+     *
+     * @return mixed
      */
     protected function manageProperty($action, $class, $property, $type = null, $linked = null)
     {
