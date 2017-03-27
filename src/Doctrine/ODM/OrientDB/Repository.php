@@ -119,11 +119,14 @@ class Repository implements ObjectRepository
      * an UnexpectedValueException if certain values of the sorting or limiting details are
      * not supported.
      *
-     * @param array $criteria
+     * @param array      $criteria
      * @param array|null $orderBy
-     * @param int|null $limit
-     * @param int|null $offset
+     * @param int|null   $limit
+     * @param int|null   $offset
+     * @param string     $fetchPlan
+     *
      * @return mixed The objects.
+     * @throws Exception
      */
     public function findBy(array $criteria, array $orderBy = array(), $limit = null, $offset = null, $fetchPlan = '*:0')
     {
@@ -133,7 +136,12 @@ class Repository implements ObjectRepository
             $query = new Query(array($mappedClass));
 
             foreach ($criteria as $key => $value) {
-                $query->andWhere("$key = ?", $value);
+                // Add in query when value is an array.
+                if (is_array($value)) {
+                    $query->andWhere(sprintf('%s IN [%s]', $key, rtrim(str_pad('', count($value) * 2, '?,'), ',')), $value);
+                } else {
+                    $query->andWhere("$key = ?", $value);
+                }
             }
 
             foreach ($orderBy as $key => $order) {
