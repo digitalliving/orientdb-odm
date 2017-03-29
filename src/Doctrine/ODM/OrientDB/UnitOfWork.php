@@ -163,7 +163,8 @@ class UnitOfWork
     public function getHydrator()
     {
         if (! $this->hydrator) {
-            $this->hydrator = new Hydrator($this);
+            $hydratorClass = $this->getManager()->getHydratorClass();
+            $this->hydrator = new $hydratorClass($this);
         }
 
         return $this->hydrator;

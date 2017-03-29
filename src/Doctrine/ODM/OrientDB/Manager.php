@@ -349,4 +349,14 @@ class Manager implements ObjectManager
     {
         return $this->configuration;
     }
+
+    /**
+     * Get the hydrator class.
+     *
+     * @return string
+     */
+    public function getHydratorClass()
+    {
+        return $this->configuration->getHydratorClass();
+    }
 }

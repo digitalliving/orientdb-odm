@@ -7,6 +7,7 @@ use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Proxy\AbstractProxyFactory;
 use Doctrine\ODM\OrientDB\Mapper\Annotations\Reader;
 use Doctrine\ODM\OrientDB\Mapper\ClassMetadataFactory;
+use Doctrine\ODM\OrientDB\Mapper\Hydration\Hydrator;
 use Doctrine\OrientDB\Util\Inflector\Cached as Inflector;
 
 /**
@@ -29,10 +30,21 @@ class Configuration
         $defaults = array(
             'proxy_namespace' => 'Doctrine\ODM\OrientDB\Proxy',
             'proxy_autogenerate_policy' => AbstractProxyFactory::AUTOGENERATE_FILE_NOT_EXISTS,
-            'document_dirs' => array()
+            'document_dirs' => array(),
+            'hydratorClass' => Hydrator::class,
         );
 
         $this->options = array_merge($defaults ,$options);
+    }
+
+    /**
+     * Get the hydrator class to use.
+     *
+     * @return string
+     */
+    public function getHydratorClass()
+    {
+        return $this->options['hydratorClass'];
     }
 
     public function getOptions()
