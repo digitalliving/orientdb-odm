@@ -21,6 +21,9 @@ namespace Doctrine\OrientDB\Query\Validator;
 
 class Escaper extends AbstractValidator
 {
+    /**
+     * @inheritdoc
+     */
     protected function clean($value)
     {
         return addslashes($value);

@@ -23,12 +23,18 @@ use Doctrine\OrientDB\Exception;
 
 class ValidationException extends Exception
 {
+    /**
+     * ValidationException constructor.
+     *
+     * @param string $value
+     * @param string $class
+     */
     public function __construct($value, $class)
     {
         if (is_array($value)) {
             $value = implode(', ', $value);
         }
 
-        $this->message = sprintf('Validation of "%s" as %s failed', $value, $class);
+        parent::__construct(sprintf('Validation of "%s" as %s failed', $value, $class));
     }
 }

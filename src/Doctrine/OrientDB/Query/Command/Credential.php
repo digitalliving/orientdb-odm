@@ -41,6 +41,7 @@ abstract class Credential extends Command implements CredentialInterface
      * Sets a permission for the query.
      *
      * @param   string $permission
+     *
      * @return  Credential
      */
     public function permission($permission)
@@ -54,6 +55,7 @@ abstract class Credential extends Command implements CredentialInterface
      * Sets the $resource on which the credential is given.
      *
      * @param   string $resource
+     *
      * @return  Credential
      */
     public function on($resource)
@@ -67,6 +69,7 @@ abstract class Credential extends Command implements CredentialInterface
      * Sets the $role having the credential on a resource.
      *
      * @param   string $role
+     *
      * @return  Credential
      */
     public function to($role)
@@ -79,14 +82,14 @@ abstract class Credential extends Command implements CredentialInterface
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'Role'          => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'Resource'      => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'Permission'    => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Role' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'Resource' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'Permission' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+        ]);
     }
 }

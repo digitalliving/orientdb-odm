@@ -26,9 +26,10 @@ interface CommandInterface
      * Sets a where token using the AND operator.
      * If the $condition contains a "?", it will be replaced by the $value.
      *
-     * @param   string $condition
-     * @param   string $value
-     * @return  Command
+     * @param string $condition
+     * @param string $value
+     *
+     * @return Command
      */
     public function andWhere($condition, $value = null);
 
@@ -37,9 +38,10 @@ interface CommandInterface
      * and deciding to remove previously set targets or not with the $append
      * parameter.
      *
-     * @param   array   $target
-     * @param   boolean $append
-     * @return  Command
+     * @param array $target
+     * @param bool  $append
+     *
+     * @return Command
      */
     public function from(array $target, $append = true);
 
@@ -47,15 +49,15 @@ interface CommandInterface
      * Returns the SQL generated within this command, replacing the tokens in
      * the schema with their actual values.
      *
-     * @return  string
+     * @return string
      */
     public function getRaw();
 
     /**
-     * Analizying the class SCHEMA, it returns an array containing all the
+     * Analyzing the class SCHEMA, it returns an array containing all the
      * tokens found there.
      *
-     * @return   array
+     * @return array
      */
     public function getTokens();
 
@@ -70,8 +72,9 @@ interface CommandInterface
      * However, both those tokens values are an array: this is done to
      * internally simplify things.
      *
-     * @param   string  $token
-     * @return  array
+     * @param string $token
+     *
+     * @return array
      */
     public function getTokenValue($token);
 
@@ -79,16 +82,17 @@ interface CommandInterface
      * Sets a where token using the OR operator.
      * If the $condition contains a "?", it will be replaced by the $value.
      *
-     * @param   string $condition
-     * @param   string $value
-     * @return  Command
+     * @param string $condition
+     * @param string $value
+     *
+     * @return Command
      */
     public function orWhere($condition, $value = null);
 
     /**
      * Deletes all the WHERE conditions in the current command.
      *
-     * @return true
+     * @return bool
      */
     public function resetWhere();
 
@@ -99,10 +103,10 @@ interface CommandInterface
      * Where conditions can be nested using the $append parameter and pre-fixed
      * with the right $clause preposition (WHERE, AND, OR).
      *
-     * @param   string  $condition
-     * @param   mixed   $value
-     * @param   boolean $append
-     * @param   string  $clause
+     * @param string $condition
+     * @param mixed  $value
+     * @param bool   $append
+     * @param string $clause
      */
     public function where($condition, $value = null, $append = false, $clause = "WHERE");
 }

@@ -25,9 +25,11 @@ abstract class AbstractValidator implements ValidatorInterface
      * Cleans and returns the $value.
      * If it is invalid, the validator fails.
      *
-     * @param   mixed $value
-     * @param   boolean $silent
-     * @return  mixed
+     * @param mixed   $value
+     * @param boolean $silent
+     *
+     * @return mixed
+     * @throws ValidationException
      */
     public function check($value, $silent = false)
     {
@@ -39,9 +41,9 @@ abstract class AbstractValidator implements ValidatorInterface
     }
 
     /**
-     * Internallly cleans and return the $value.
+     * Internally cleans and return the $value.
      *
-     * @param   mixed $value
+     * @param mixed $value
      */
     abstract protected function clean($value);
 
@@ -49,9 +51,11 @@ abstract class AbstractValidator implements ValidatorInterface
      * Makes the validator fail: if silent, null is returned, otherwise an
      * exception is raised.
      *
-     * @param   mixed $value
-     * @param   boolean $silent
-     * @throws  ValidationException
+     * @param ValidationException $e
+     * @param mixed               $value
+     * @param boolean             $silent
+     *
+     * @throws ValidationException
      */
     protected function fail(ValidationException $e, $value, $silent = false)
     {

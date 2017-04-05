@@ -20,7 +20,6 @@
 namespace Doctrine\OrientDB\Query\Command\Index;
 
 use Doctrine\OrientDB\Query\Command\Index;
-use Doctrine\OrientDB\Query\Command;
 
 class Create extends Index
 {

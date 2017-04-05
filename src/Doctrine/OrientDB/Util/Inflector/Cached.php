@@ -6,7 +6,10 @@ use Doctrine\Common\Util\Inflector;
 
 class Cached extends Inflector
 {
-    protected static $cache = array();
+    /**
+     * @var array
+     */
+    protected static $cache = [];
 
     /**
      * @inheritdoc

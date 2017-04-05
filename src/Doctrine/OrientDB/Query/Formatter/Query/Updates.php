@@ -23,6 +23,9 @@ use Doctrine\OrientDB\Query\Formatter\Query;
 
 class Updates extends Query implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
         $string = "";
@@ -36,7 +39,7 @@ class Updates extends Query implements TokenInterface
                     // Preserve content of $value as is
                 } else if (is_bool($value)) {
                     $value = $value ? 'TRUE' : 'FALSE';
-                } elseif(is_array($value)) {
+                } elseif (is_array($value)) {
                     $value = '[' . implode(',', $value) . ']';
                 } else {
                     $value = '"' . addslashes($value) . '"';

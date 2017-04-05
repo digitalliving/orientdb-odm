@@ -54,7 +54,8 @@ class Edge extends Command implements UpdateInterface
      *
      * @param  array   $values
      * @param  boolean $append
-     * @return Update
+     *
+     * @return Edge
      */
     public function set(array $values, $append = true)
     {
@@ -66,14 +67,14 @@ class Edge extends Command implements UpdateInterface
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'From'   => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'To'     => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'Fields' => "Doctrine\OrientDB\Query\Formatter\Query\Updates"
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'From' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'To' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'Fields' => 'Doctrine\OrientDB\Query\Formatter\Query\Updates',
+        ]);
     }
 }

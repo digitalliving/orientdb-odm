@@ -40,7 +40,8 @@ class OClass extends Command
      * Sets the $class for the current query.
      *
      * @param   string $class
-     * @return  void
+     *
+     * @return bool
      */
     protected function setClass($class)
     {

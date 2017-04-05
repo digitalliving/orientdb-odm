@@ -23,6 +23,11 @@ use Doctrine\OrientDB\Query\Command;
 
 class Record extends Command
 {
+    /**
+     * Record constructor.
+     *
+     * @param string $rid
+     */
     public function __construct($rid)
     {
         parent::__construct();
@@ -43,8 +48,8 @@ class Record extends Command
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-          'Rid'     => "Doctrine\OrientDB\Query\Formatter\Query\Rid",
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Rid' => 'Doctrine\OrientDB\Query\Formatter\Query\Rid',
+        ]);
     }
 }

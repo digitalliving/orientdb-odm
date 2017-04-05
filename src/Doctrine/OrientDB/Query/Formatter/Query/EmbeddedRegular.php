@@ -21,6 +21,9 @@ namespace Doctrine\OrientDB\Query\Formatter\Query;
 
 class EmbeddedRegular extends Regular implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
         return '"' . parent::format($values) . '"';

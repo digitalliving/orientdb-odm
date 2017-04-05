@@ -20,7 +20,6 @@
 namespace Doctrine\OrientDB\Query\Command\Index;
 
 use Doctrine\OrientDB\Query\Command\Index;
-use Doctrine\OrientDB\Query\Command;
 
 class Put extends Index
 {
@@ -52,14 +51,14 @@ class Put extends Index
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'Name'  => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'Key'   => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'Value' => "Doctrine\OrientDB\Query\Formatter\Query\EmbeddedRid",
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Name' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'Key' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'Value' => 'Doctrine\OrientDB\Query\Formatter\Query\EmbeddedRid',
+        ]);
     }
 }

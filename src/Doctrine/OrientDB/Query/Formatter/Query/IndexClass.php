@@ -23,6 +23,9 @@ use Doctrine\OrientDB\Query\Formatter\Query;
 
 class IndexClass extends Query implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
         if ($values) {

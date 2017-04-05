@@ -23,6 +23,9 @@ use Doctrine\OrientDB\Query\Formatter\Query;
 
 class Where extends Query implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
         return implode(' ', $values);

@@ -28,6 +28,7 @@ class Insert extends Command implements InsertInterface
      *
      * @param  array   $fields
      * @param  boolean $append
+     *
      * @return Insert
      */
     public function fields(array $fields, $append = true)
@@ -49,6 +50,7 @@ class Insert extends Command implements InsertInterface
      * Sets the class in which the query will insert informations.
      *
      * @param  string $target
+     *
      * @return Insert
      */
     public function into($target)
@@ -63,6 +65,7 @@ class Insert extends Command implements InsertInterface
      *
      * @param  array   $values
      * @param  boolean $append
+     *
      * @return Insert
      */
     public function values(array $values, $append = true)
@@ -75,13 +78,13 @@ class Insert extends Command implements InsertInterface
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'Fields' => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'Values' => "Doctrine\OrientDB\Query\Formatter\Query\Values"
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Fields' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'Values' => 'Doctrine\OrientDB\Query\Formatter\Query\Values',
+        ]);
     }
 }

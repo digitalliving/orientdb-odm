@@ -23,6 +23,9 @@ use Doctrine\OrientDB\Query\Formatter\Query;
 
 class Skip extends Query implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
         if ($values && is_numeric($records = $values[0]) && $records >= 0) {

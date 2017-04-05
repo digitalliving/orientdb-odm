@@ -22,11 +22,12 @@ namespace Doctrine\OrientDB\Query\Validator;
 interface ValidatorInterface
 {
     /**
-     * Cleans ad returns the polished $value.
+     * Cleans and returns the polished $value.
      *
-     * @param   mixed $value
-     * @return  mixed
-     * @throws  Doctrine\OrientDB\Query\Validator\ValidationException
+     * @param mixed $value
+     *
+     * @return mixed
+     * @throws \Doctrine\OrientDB\Query\Validator\ValidationException
      */
     public function check($value);
 }

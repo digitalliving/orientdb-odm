@@ -41,12 +41,12 @@ class Rebuild extends Index
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
         return array_merge(parent::getTokenFormatters(), array(
-            'IndexName'  => "Doctrine\OrientDB\Query\Formatter\Query\RebuildIndex",
+            'IndexName'  => 'Doctrine\OrientDB\Query\Formatter\Query\RebuildIndex',
         ));
     }
 }

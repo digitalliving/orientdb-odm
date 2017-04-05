@@ -23,6 +23,9 @@ use Doctrine\OrientDB\Query\Formatter\Query;
 
 class Target extends Query implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
         $values = self::stripNonSQLCharacters($values);

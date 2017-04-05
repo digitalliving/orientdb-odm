@@ -71,17 +71,17 @@ class Link extends Command
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
         return array_merge(parent::getTokenFormatters(), array(
-            'Inverse'             => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'SourceClass'         => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'SourceProperty'      => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'DestinationClass'    => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'DestinationProperty' => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-            'Name'                => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
+            'Inverse'             => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'SourceClass'         => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'SourceProperty'      => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'DestinationClass'    => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'DestinationProperty' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+            'Name'                => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
         ));
     }
 }

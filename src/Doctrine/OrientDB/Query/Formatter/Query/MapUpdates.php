@@ -24,9 +24,12 @@ use Doctrine\OrientDB\Query\Validator\Rid as RidValidator;
 
 class MapUpdates extends Query implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
-        $updates = array();
+        $updates = [];
         $validator = new RidValidator;
 
         foreach ($values as $map => $update) {

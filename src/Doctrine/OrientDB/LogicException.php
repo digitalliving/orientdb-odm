@@ -16,12 +16,18 @@
  * @subpackage
  * @author      Alessandro Nadalin <alessandro.nadalin@gmail.com>
  */
+
 namespace Doctrine\OrientDB;
 
 class LogicException extends Exception
 {
+    /**
+     * LogicException constructor.
+     *
+     * @param string $message
+     */
     public function __construct($message)
     {
-        $this->message = $message;
+        parent::__construct($message);
     }
 }

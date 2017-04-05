@@ -47,8 +47,9 @@ class Update extends Command implements UpdateInterface
      * Set the $values of the updates to be done.
      * You can $append the values.
      *
-     * @param  array   $values
-     * @param  boolean $append
+     * @param array   $values
+     * @param boolean $append
+     *
      * @return Update
      */
     public function set(array $values, $append = true)
@@ -61,28 +62,28 @@ class Update extends Command implements UpdateInterface
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'Updates' => "Doctrine\OrientDB\Query\Formatter\Query\Updates",
-            'Returns' => "Doctrine\OrientDB\Query\Formatter\Query\Returns"
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Updates' => 'Doctrine\OrientDB\Query\Formatter\Query\Updates',
+            'Returns' => 'Doctrine\OrientDB\Query\Formatter\Query\Returns',
+        ]);
     }
 
     /**
      * Returns the acceptable return types
      *
-     * @return Array
+     * @return array
      */
     public function getValidReturnTypes()
     {
-        return array(
+        return [
             self::RETURN_COUNT,
             self::RETURN_BEFORE,
-            self::RETURN_AFTER
-        );
+            self::RETURN_AFTER,
+        ];
     }
 
     /**

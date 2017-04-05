@@ -21,6 +21,11 @@ namespace Doctrine\OrientDB;
 
 class Exception extends \Exception
 {
+    /**
+     * Exception constructor.
+     *
+     * @param string $message
+     */
     public function __construct($message)
     {
         $this->message = $message;

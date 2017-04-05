@@ -27,10 +27,11 @@ interface SelectInterface
      * Index selects can query with the BETWEEN operator:
      * <code>select from index:name where x between 10.3 and 10.7</code>
      *
-     * @param   string $key
-     * @param   string $left
-     * @param   string $right
-     * @return  Select
+     * @param string $key
+     * @param string $left
+     * @param string $right
+     *
+     * @return Select
      */
     public function between($key, $left, $right);
 
@@ -38,9 +39,10 @@ interface SelectInterface
      * Sets the fields to select within the query ($projections).
      * Values can be appended through the $append parameter.
      *
-     * @param   array   $projections
-     * @param   boolean $append
-     * @return  Select
+     * @param array   $projections
+     * @param boolean $append
+     *
+     * @return Select
      */
     public function select(array $projections, $append);
 
@@ -52,25 +54,27 @@ interface SelectInterface
      * You can decide wheter to put the $order at $first place among the set
      * orders.
      *
-     * @param   string  $order
-     * @param   boolean $append
-     * @param   boolean $first
-     * @return  Select
+     * @param string  $order
+     * @param boolean $append
+     * @param boolean $first
+     *
+     * @return Select
      */
     public function orderBy($order, $append, $first);
 
     /**
      * Sets the maximum amount of records retrieved whithin the current SELECT.
      *
-     * @param   integet $limit
-     * @return  Select
+     * @param int $limit
+     *
+     * @return Select
      */
     public function limit($limit);
 
     /**
      * Sets the number of records to skip.
      *
-     * @param integer $limit
+     * @param int $limit
      */
-    public function skip($records);
+    public function skip($limit);
 }

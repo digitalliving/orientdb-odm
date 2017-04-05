@@ -58,26 +58,26 @@ class Delete extends Command
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'Returns' => "Doctrine\OrientDB\Query\Formatter\Query\Returns"
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Returns' => 'Doctrine\OrientDB\Query\Formatter\Query\Returns',
+        ]);
     }
 
     /**
      * Returns the acceptable return types
      *
-     * @return Array
+     * @return array
      */
     public function getValidReturnTypes()
     {
-        return array(
+        return [
             self::RETURN_COUNT,
-            self::RETURN_BEFORE
-        );
+            self::RETURN_BEFORE,
+        ];
     }
 
     /**

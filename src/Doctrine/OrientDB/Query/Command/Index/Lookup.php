@@ -20,7 +20,6 @@
 namespace Doctrine\OrientDB\Query\Command\Index;
 
 use Doctrine\OrientDB\Query\Command\Index;
-use Doctrine\OrientDB\Query\Command;
 
 class Lookup extends Index
 {
@@ -47,12 +46,12 @@ class Lookup extends Index
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'Index' => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Index' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+        ]);
     }
 }

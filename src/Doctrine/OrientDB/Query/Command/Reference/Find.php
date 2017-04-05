@@ -47,9 +47,10 @@ class Find extends Command implements FindInterface
     /**
      * Restricts the classes to look into to find the record.
      *
-     * @param   array $classes
-     * @param   boolean $append
-     * @return  Find
+     * @param array $classes
+     * @param bool  $append
+     *
+     * @return Find
      */
     public function in(array $classes, $append = true)
     {
@@ -75,8 +76,8 @@ class Find extends Command implements FindInterface
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'ClassList'    => "Doctrine\OrientDB\Query\Formatter\Query\ClassList",
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'ClassList' => 'Doctrine\OrientDB\Query\Formatter\Query\ClassList',
+        ]);
     }
 }

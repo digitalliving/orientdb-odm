@@ -21,6 +21,9 @@ namespace Doctrine\OrientDB\Query\Validator;
 
 class Rid extends AbstractValidator
 {
+    /**
+     * @inheritdoc
+     */
     protected function clean($rid)
     {
         if (!preg_match('/^\s*#?(\d+:\d+)\s*$/', $rid, $matches)) {

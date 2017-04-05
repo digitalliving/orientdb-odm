@@ -52,6 +52,11 @@ class Create extends Property
         return "CREATE PROPERTY :Class.:Property :Type :Linked";
     }
 
+    /**
+     * @param $linked
+     *
+     * @return Create
+     */
     public function setLinked($linked)
     {
         $this->setToken('Linked', $linked);
@@ -59,6 +64,11 @@ class Create extends Property
         return $this;
     }
 
+    /**
+     * @param string $type
+     *
+     * @return Create
+     */
     public function setType($type)
     {
         $this->setToken('Type', $type);
@@ -74,7 +84,7 @@ class Create extends Property
     protected function getTokenFormatters()
     {
         return array_merge(parent::getTokenFormatters(), array(
-            'Linked'    => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
+            'Linked'    => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
         ));
     }
 }

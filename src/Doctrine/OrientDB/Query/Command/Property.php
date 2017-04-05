@@ -38,8 +38,9 @@ class Property extends Command implements PropertyInterface
     /**
      * Sets the class of the property.
      *
-     * @param   string    $class
-     * @return  Property
+     * @param string $class
+     *
+     * @return Property
      */
     public function on($class)
     {

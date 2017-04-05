@@ -23,6 +23,11 @@ use Doctrine\OrientDB\Query\Command;
 
 abstract class Truncate extends Command
 {
+    /**
+     * Truncate constructor.
+     *
+     * @param string $name
+     */
     public function __construct($name)
     {
         parent::__construct();
@@ -30,11 +35,14 @@ abstract class Truncate extends Command
         $this->setToken('Name', $name);
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'Name' => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Name' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+        ]);
     }
 }
 

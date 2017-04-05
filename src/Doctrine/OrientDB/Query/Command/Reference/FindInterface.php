@@ -22,12 +22,15 @@ namespace Doctrine\OrientDB\Query\Command\Reference;
 
 interface FindInterface
 {
-  /**
-   * Sets a list of $classes in which you can look for object's references.
-   * The $append parameter is used to determine wheter to append or overwrite
-   * the classes to existing ones ( usually set with a fluent interface ).
-   *
-   * @return Find
-   */
-  public function in(array $classes, $append);
+    /**
+     * Sets a list of $classes in which you can look for object's references.
+     * The $append parameter is used to determine wheter to append or overwrite
+     * the classes to existing ones ( usually set with a fluent interface ).
+     *
+     * @param array $classes
+     * @param bool  $append
+     *
+     * @return Find
+     */
+    public function in(array $classes, $append);
 }

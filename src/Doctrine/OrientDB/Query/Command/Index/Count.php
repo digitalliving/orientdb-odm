@@ -20,7 +20,6 @@
 namespace Doctrine\OrientDB\Query\Command\Index;
 
 use Doctrine\OrientDB\Query\Command\Index;
-use Doctrine\OrientDB\Query\Command;
 
 class Count extends Index
 {
@@ -29,9 +28,7 @@ class Count extends Index
      * Optionally, you can specify the property $class and the $type of the
      * index.
      *
-     * @param string $property
-     * @param string $class
-     * @param string $type
+     * @param string $indexName
      */
     public function __construct($indexName)
     {
@@ -51,7 +48,7 @@ class Count extends Index
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {

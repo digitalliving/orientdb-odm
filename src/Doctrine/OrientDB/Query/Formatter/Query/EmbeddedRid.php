@@ -21,6 +21,9 @@ namespace Doctrine\OrientDB\Query\Formatter\Query;
 
 class EmbeddedRid extends Rid implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
         if ($rid = parent::format($values)) {

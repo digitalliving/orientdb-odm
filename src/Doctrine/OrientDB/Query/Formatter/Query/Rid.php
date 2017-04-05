@@ -24,6 +24,9 @@ use Doctrine\OrientDB\Query\Validator\Rid as RidValidator;
 
 class Rid extends Query implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
         $validator = new RidValidator();

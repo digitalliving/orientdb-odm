@@ -24,17 +24,21 @@ use Doctrine\OrientDB\Query\Validator\Rid as RidValidator;
 
 class Values extends Query implements TokenInterface
 {
+    /**
+     * @inheritdoc
+     */
     public static function format(array $values)
     {
         foreach ($values as $key => $value) {
             $rid = false;
 
             if (is_string($value)) {
-                $validator      = new RidValidator;
+                $validator = new RidValidator;
 
                 try {
                     $rid = $validator->check($value);
-                } catch (\Exception $e) {}
+                } catch (\Exception $e) {
+                }
             }
 
             if ($rid) {

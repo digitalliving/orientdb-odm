@@ -19,7 +19,6 @@
 
 namespace Doctrine\OrientDB\Query\Command;
 
-use Doctrine\OrientDB\Exception\Query\Command as CommandException;
 use Doctrine\OrientDB\Query\Command;
 
 class Select extends Command implements SelectInterface
@@ -51,16 +50,17 @@ class Select extends Command implements SelectInterface
      * Index selects can query with the BETWEEN operator:
      * <code>select from index:name where x between 10.3 and 10.7</code>
      *
-     * @param   string $key
-     * @param   string $left
-     * @param   string $right
-     * @return  Select
+     * @param string $key
+     * @param string $left
+     * @param string $right
+     *
+     * @return Select
      */
     public function between($key, $left, $right)
     {
         $this->resetWhere();
         $this->where($key);
-        $this->setTokenValues('Between', array($left, $right));
+        $this->setTokenValues('Between', [$left, $right]);
 
         return $this;
     }
@@ -68,7 +68,7 @@ class Select extends Command implements SelectInterface
     /**
      * Deletes all the WHERE and BETWEEN conditions in the current SELECT.
      *
-     * @return true
+     * @return bool
      */
     public function resetWhere()
     {
@@ -82,8 +82,10 @@ class Select extends Command implements SelectInterface
     /**
      * Sets the fields to select.
      *
-     * @param array   $projections
-     * @param boolean $append
+     * @param array $projections
+     * @param bool  $append
+     *
+     * @return Select
      */
     public function select(array $projections, $append = true)
     {
@@ -95,9 +97,11 @@ class Select extends Command implements SelectInterface
     /**
      * Orders the query.
      *
-     * @param array   $order
-     * @param boolean $append
-     * @param boolean $first
+     * @param array $order
+     * @param bool  $append
+     * @param bool  $first
+     *
+     * @return Select
      */
     public function orderBy($order, $append = true, $first = false)
     {
@@ -110,10 +114,12 @@ class Select extends Command implements SelectInterface
      * Sets a limit to the SELECT.
      *
      * @param integer $limit
+     *
+     * @return Select
      */
     public function limit($limit)
     {
-        $this->setToken('Limit', (int) $limit);
+        $this->setToken('Limit', (int)$limit);
 
         return $this;
     }
@@ -121,11 +127,13 @@ class Select extends Command implements SelectInterface
     /**
      * Sets the number of records to skip.
      *
-     * @param integer $limit
+     * @param int $records
+     *
+     * @return Select
      */
     public function skip($records)
     {
-        $this->setToken('Skip', (int) $records);
+        $this->setToken('Skip', (int)$records);
 
         return $this;
     }
@@ -137,12 +145,12 @@ class Select extends Command implements SelectInterface
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'Projections' => "Doctrine\OrientDB\Query\Formatter\Query\Select",
-            'OrderBy'     => "Doctrine\OrientDB\Query\Formatter\Query\OrderBy",
-            'Limit'       => "Doctrine\OrientDB\Query\Formatter\Query\Limit",
-            'Skip'        => "Doctrine\OrientDB\Query\Formatter\Query\Skip",
-            'Between'     => "Doctrine\OrientDB\Query\Formatter\Query\Between",
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Projections' => 'Doctrine\OrientDB\Query\Formatter\Query\Select',
+            'OrderBy' => 'Doctrine\OrientDB\Query\Formatter\Query\OrderBy',
+            'Limit' => 'Doctrine\OrientDB\Query\Formatter\Query\Limit',
+            'Skip' => 'Doctrine\OrientDB\Query\Formatter\Query\Skip',
+            'Between' => 'Doctrine\OrientDB\Query\Formatter\Query\Between',
+        ]);
     }
 }

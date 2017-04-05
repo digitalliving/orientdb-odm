@@ -21,10 +21,19 @@ namespace Doctrine\OrientDB\Query\Command\Index;
 
 use Doctrine\OrientDB\Query\Command\Index;
 use Doctrine\OrientDB\Query\Formatter\Query\EmbeddedRid as EmbeddedRidFormatter;
+use Doctrine\OrientDB\Query\Formatter\Query\TokenInterface;
 
 class Remove extends Index
 {
-    public function __construct($indexName, $key, $rid = null, TokenFormatter $ridFormatter = null)
+    /**
+     * Remove constructor.
+     *
+     * @param string              $indexName
+     * @param string              $key
+     * @param string|null         $rid
+     * @param TokenInterface|null $ridFormatter
+     */
+    public function __construct($indexName, $key, $rid = null, TokenInterface $ridFormatter = null)
     {
         parent::__construct();
 
@@ -36,7 +45,7 @@ class Remove extends Index
         }
 
         if ($rid) {
-            $rid = $ridFormatter::format(array($rid));
+            $rid = $ridFormatter::format([$rid]);
             $method = $key ? 'andWhere' : 'where';
 
             $this->$method("rid = $rid");
@@ -54,12 +63,12 @@ class Remove extends Index
     /**
      * Returns the formatters for this query's tokens.
      *
-     * @return Array
+     * @return array
      */
     protected function getTokenFormatters()
     {
-        return array_merge(parent::getTokenFormatters(), array(
-            'Name'  => "Doctrine\OrientDB\Query\Formatter\Query\Regular",
-        ));
+        return array_merge(parent::getTokenFormatters(), [
+            'Name' => 'Doctrine\OrientDB\Query\Formatter\Query\Regular',
+        ]);
     }
 }
