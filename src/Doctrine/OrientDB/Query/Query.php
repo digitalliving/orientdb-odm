@@ -71,6 +71,7 @@ class Query implements QueryInterface
         'link' => 'Doctrine\OrientDB\Query\Command\Create\Link',
         'edge' => 'Doctrine\OrientDB\Query\Command\Create\Edge',
         'edge.delete' => 'Doctrine\OrientDB\Query\Command\Edge\Delete',
+        'vertex.delete' => 'Doctrine\OrientDB\Query\Command\Vertex\Delete',
     ];
 
     /**
@@ -219,12 +220,36 @@ class Query implements QueryInterface
      * @param string $from
      * @param string $to
      *
-     * @return Edge
+     * @return CommandInterface|Edge
      */
     public function edge($class, $from, $to)
     {
         $commandClass = $this->getCommandClass('edge');
         $this->command = new $commandClass($class, $from, $to);
+
+        return $this->command;
+    }
+
+    /**
+     * @return CommandInterface|\Doctrine\OrientDB\Query\Command\Edge\Delete
+     */
+    public function deleteEdge()
+    {
+        $commandClass = $this->getCommandClass('edge.delete');
+        $this->command = new $commandClass();
+
+        return $this->command;
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return Command\Vertex\Delete|CommandInterface
+     */
+    public function deleteVertex($class)
+    {
+        $commandClass = $this->getCommandClass('vertex.delete');
+        $this->command = new $commandClass($class);
 
         return $this->command;
     }
