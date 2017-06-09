@@ -128,7 +128,7 @@ class Repository implements ObjectRepository
      * @return mixed The objects.
      * @throws Exception
      */
-    public function findBy(array $criteria, array $orderBy = array(), $limit = null, $offset = null, $fetchPlan = '*:0')
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null, $fetchPlan = '*:0')
     {
         $results = array();
 
