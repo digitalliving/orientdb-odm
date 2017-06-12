@@ -131,6 +131,10 @@ class Repository implements ObjectRepository
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null, $fetchPlan = '*:0')
     {
         $results = array();
+        // Fixes problem after updating to PHP 7.1.
+        if ($orderBy === null) {
+            $orderBy = array();
+        }
 
         foreach ($this->getOrientClasses() as $mappedClass) {
             $query = new Query(array($mappedClass));
