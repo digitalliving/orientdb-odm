@@ -26,6 +26,7 @@ class Rid extends AbstractValidator
      */
     protected function clean($rid)
     {
+        $matches = null;
         if (!preg_match('/^\s*#?(\d+:\d+)\s*$/', $rid, $matches)) {
             throw new ValidationException($rid, __CLASS__);
         }
