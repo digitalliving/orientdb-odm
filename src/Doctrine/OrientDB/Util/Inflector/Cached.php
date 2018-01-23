@@ -14,7 +14,7 @@ class Cached extends Inflector
     /**
      * @inheritdoc
      */
-    public static function tableize($word)
+    public static function tableize(string $word): string
     {
         if (!isset(static::$cache['tableize'][$word])) {
             static::$cache['tableize'][$word] = parent::tableize($word);
@@ -26,7 +26,7 @@ class Cached extends Inflector
     /**
      * @inheritdoc
      */
-    public static function classify($word)
+    public static function classify(string $word): string
     {
         if (!isset(static::$cache['classify'][$word])) {
             static::$cache['classify'][$word] = parent::classify($word);
@@ -38,7 +38,7 @@ class Cached extends Inflector
     /**
      * @inheritdoc
      */
-    public static function camelize($word)
+    public static function camelize(string $word): string
     {
         if (!isset(static::$cache['camelize'][$word])) {
             static::$cache['camelize'][$word] = parent::camelize($word);
